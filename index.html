@@ -542,7 +542,11 @@ message ProtoCSMap3DNotifyPlayerHurt{ string targetId=1; int32 hp=2; int32 maxHp
 
         document.getElementById("btnConnect").onclick = () => {
             if (ws && ws.readyState === 1) return;
-            ws = new WebSocket(document.getElementById("wsUrl").value);
+try {            
+ws = new WebSocket(document.getElementById("wsUrl").value);
+} catch(err){
+console.error(err);
+}
             ws.binaryType = "arraybuffer";
             ws.onopen = () => log("✓ WS 已连接");
             ws.onclose = () => log("✗ WS 断开");
